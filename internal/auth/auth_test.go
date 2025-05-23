@@ -25,7 +25,7 @@ func TestGetAPIKey(t *testing.T) {
 			name:    "Missing Authorization Header",
 			input:   http.Header{}, // Empty header
 			want:    "",
-			wantErr: nil, //ErrNoAuthHeaderIncluded, // Use the specific error variable
+			wantErr: ErrNoAuthHeaderIncluded, // Use the specific error variable
 		},
 		{
 			name:    "Empty Authorization Header Value",
