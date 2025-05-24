@@ -20,6 +20,18 @@ jobs:
 
       - name: run tests
         run: go test -cover ./...
-  Style:
-    name: check code style
-    run: go fmt -d ./...
+Style:
+  name: check code style
+  runs-on: ubuntu-latest # Needed
+
+  steps:
+    - name: Check out code
+      uses: actions/checkout@v4 # Needed
+
+    - name: Set up Go
+      uses: actions/setup-go@v5 # Needed
+      with:
+        go-version: "1.23.0" # Specify Go version
+
+    - name: run go fmt check
+      run: go fmt -d ./...
