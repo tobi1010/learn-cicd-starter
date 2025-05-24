@@ -22,4 +22,4 @@ jobs:
         run: go test -cover ./...
   Style:
     name: check code style
-    run: test -z $(go fmt ./...)
+    run: test -z $(go fmt ./...) && echo $?
