@@ -34,4 +34,4 @@ jobs:
           go-version: "1.23.0" # Specify Go version
 
       - name: run go fmt check
-        run: test -z $(go fmt ./...) && echo $?
+        run: test -z $(go fmt ./...)
