@@ -37,7 +37,7 @@ jobs:
       - name: Build Image in cloud repo
         run: gcloud builds submit --tag us-central1-docker.pkg.dev/notely-461021/notely-ar-repo/notely:latest
 
-      - name: Install goose
+      - name: Install and setup goose
         run: go install github.com/pressly/goose/v3/cmd/goose@latest
 
       - uses: mscno/setup-goose@v1
