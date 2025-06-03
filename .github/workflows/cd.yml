@@ -40,10 +40,9 @@ jobs:
       - name: Install goose
         run: go install github.com/pressly/goose/v3/cmd/goose@latest
 
-      - name: ls
-        run: ls -l ./sql/schema
-
       - uses: mscno/setup-goose@v1
+      - run: pwd
+      - run: ls -l ./sql/schema
       - run: goose -v turso "$DATABASE_URL" up ./sql/schema
 
       - name: Deploy to Cloud Run
