@@ -8,6 +8,8 @@ jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
     steps:
       - name: Check out code
@@ -35,10 +37,8 @@ jobs:
       - name: Build Image in cloud repo
         run: gcloud builds submit --tag us-central1-docker.pkg.dev/notely-461021/notely-ar-repo/notely:latest
 
-        env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
       - uses: mscno/setup-goose@v1
-      - run: goose up
+      - run: goose up ./sql/schema
 
       - name: Deploy to Cloud Run
         run: gcloud run deploy notely --image us-central1-docker.pkg.dev/notely-461021/notely-ar-repo/notely:latest --region us-central1 --allow-unauthenticated --project notely-461021 --max-instances=4
