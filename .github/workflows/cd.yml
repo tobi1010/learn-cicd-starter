@@ -43,6 +43,7 @@ jobs:
       - uses: mscno/setup-goose@v1
       - run: pwd
       - run: ls -l ./sql/schema
+      - run: goose status
       - run: goose -v turso "$DATABASE_URL" up ./sql/schema
 
       - name: Deploy to Cloud Run
